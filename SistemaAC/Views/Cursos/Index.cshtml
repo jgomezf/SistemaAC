@@ -1,0 +1,134 @@
+﻿
+
+@{
+    ViewData["Title"] = "Cursos";
+}
+
+<h2>Cursos</h2>
+<p>
+    <a data-toggle='modal' onclick="restablecer();" data-target='#modalCS' class='btn btn-info'>Crear curso</a>
+</p>
+<div class="form-group">
+    <div class="col-md-6">
+        <input id="filtrar" name="filtrar" placeholder="Buscar" onKeyUp="filtrarCurso(1,'nombre');" class="form-control" />
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a href="#" onclick='filtrarCurso(1,"nombre")'>Nombre</a>
+            </th>
+            <th>
+                <a href="#" onclick='filtrarCurso(1,"des")'>Descripcion</a>
+            </th>
+            <th>
+                <a href="#" onclick='filtrarCurso(1,"creditos")'>Creditos</a>
+            </th>
+            <th>
+                <a href="#" onclick='filtrarCurso(1,"horas")'>Horas</a>
+            </th>
+            <th>
+                <a href="#" onclick='filtrarCurso(1,"costo")'>Costo</a>
+            </th>
+            <th>
+                <a href="#" onclick='filtrarCurso(1,"estado")'>Estado</a>
+            </th>
+            <th>
+                <a href="#" onclick='filtrarCurso(1,"categoria")'>Categoria</a>
+            </th>
+            <th>
+                Opciones
+            </th>
+        </tr>
+    </thead>
+    <tbody id="resultSearch"></tbody>
+</table>
+<div id="paginado">
+
+</div>
+<div class="modal fade" id="modalCS" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Agregar curso</h4>
+            </div>
+            <div class="modal-body">
+                <form asp-action="">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="Nombre" class="col-md-2 control-label">Nombre</label>
+                            <div class="col-md-10">
+                                <input for="Nombre" id="Nombre" placeholder="Nombre" name="Nombre" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Descripcion" class="col-md-2 control-label">Descripcion</label>
+                            <div class="col-md-10">
+                                <input for="Descripcion" id="Descripcion" placeholder="Descripcion" name="Descripcion" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Creditos" class="col-md-2 control-label">Creditos</label>
+                            <div class="col-md-10">
+                                <input for="Creditos" id="Creditos" placeholder="Creditos" name="Creditos" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Horas" class="col-md-2 control-label">Horas</label>
+                            <div class="col-md-10">
+                                <input for="Horas" id="Horas" placeholder="Horas" name="Horas" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Costo" class="col-md-2 control-label">Costo</label>
+                            <div class="col-md-10">
+                                <input for="Costo" id="Costo" placeholder="Costo" name="Costo" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Estado" class="col-md-2 control-label">Estado</label>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" for="Estado" id="Estado" name="Estado" />
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Categoria" class="col-md-2 control-label">Categoria</label>
+                            <div class="col-md-10">
+                                <select id='CategoriaCursos' class="form-control">
+                                   
+
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <label id="mensaje" class="col-md-2 control-label"></label>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" onclick="agregarCurso()" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ModalEstadoCurso" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4  class="modal-title">Actualizar estado</h4>
+            </div>
+            <div class="modal-body">
+                <h3 id="titleCurso" class="modal-title"></h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" onclick="editarEstadoCurso1()" class="btn btn-primary">Aceptar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

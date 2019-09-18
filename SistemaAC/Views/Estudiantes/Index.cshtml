@@ -1,0 +1,148 @@
+﻿
+@{
+    ViewData["Title"] = "Estudiantes";
+}
+<h2>Estudiantes</h2>
+<p>
+    <a data-toggle='modal' onclick="restablecerEstudiantes();" data-target='#modalAS' class='btn btn-info'>Crear Estudiante</a>
+</p>
+<div class="form-group">
+    <div class="col-md-6">
+        <input id="filtrar" name="filtrar" placeholder="Buscar" onKeyUp="filtrarEstudiantes(1,'nombre');" class="form-control" />
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Codigo
+            </th>
+            <th>
+                Documento
+            </th>
+            <th>
+                Nombres
+            </th>
+            <th>
+                Apellidos
+            </th>
+
+            <th>
+                Fecha de Nacimiento
+            </th>
+            <th>
+                Telefono
+            </th>
+            <th>
+                Email
+            </th>
+
+            <th>
+                Direccion
+            </th>
+            <th>
+                Estado
+            </th>
+            <th>
+                Opciones
+            </th>
+        </tr>
+    </thead>
+    <tbody id="resultSearch"></tbody>
+</table>
+<div id="paginado">
+
+</div>
+<div class="modal fade" id="modalAS" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Agregar estudiante</h4>
+            </div>
+            <div class="modal-body">
+                <form asp-action="">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="Codigo" class="col-md-2 control-label">Codigo</label>
+                            <div class="col-md-10">
+                                <input for="Codigo" id="Codigo" placeholder="Codigo" name="Codigo" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Nombre" class="col-md-2 control-label">Nombre</label>
+                            <div class="col-md-10">
+                                <input for="Nombre" id="Nombre" placeholder="Nombre" name="Nombre" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Apellidos" class="col-md-2 control-label">Apellidos</label>
+                            <div class="col-md-10">
+                                <input for="Apellidos" id="Apellidos" placeholder="Apellidos" name="Apellidos" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="FechaNacimiento" class="col-md-2 control-label">Fecha Nacimiento</label>
+                            <div class="col-md-10">
+                                <input type="datetime-local" for="FechaNacimiento" id="FechaNacimiento" placeholder="Fecha Nacimiento" name="FechaNacimiento" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Documento" class="col-md-2 control-label">Documento</label>
+                            <div class="col-md-10">
+                                <input for="Documento" id="Documento" placeholder="Documento" name="Documento" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Email" class="col-md-2 control-label">Email</label>
+                            <div class="col-md-10">
+                                <input for="Email" id="Email" placeholder="Email" name="Email" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Telefono" class="col-md-2 control-label">Telefono</label>
+                            <div class="col-md-10">
+                                <input for="Telefono" id="Telefono" placeholder="Telefono" name="Telefono" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Direccion" class="col-md-2 control-label">Direccion</label>
+                            <div class="col-md-10">
+                                <input for="Direccion" id="Direccion" placeholder="Direccion" name="Direccion" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Estado" class="col-md-2 control-label">Estado</label>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" for="Estado" id="Estado" name="Estado" />
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <label id="mensaje" class="col-md-2 control-label"></label>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" onclick="guardarEstudiante()" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalDeleteAS" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Eliminar Estudiante</h4>
+            </div>
+            <div class="modal-body">
+                <h3 id="titleCurso" class="modal-title"></h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class=" btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" onclick="deleteEstudiantes()" class="btn btn-primary">Aceptar</button>
+            </div>
+        </div><!--modal-content-->
+    </div><!--modal-dialog-->
+</div><!--modal-->
