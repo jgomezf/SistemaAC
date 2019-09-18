@@ -36,6 +36,8 @@
                     <li><a asp-area="" asp-controller="Categorias" asp-action="Index">Categorias</a></li>
                     <li><a asp-area="" asp-controller="Cursos" asp-action="Index">Cursos</a></li>
                     <li><a asp-area="" asp-controller="Estudiantes" asp-action="Index">Estudiantes</a></li>
+                    <li><a asp-area="" asp-controller="Instructors" asp-action="Index">Instructor</a></li>
+                    <li><a asp-area="" asp-controller="Inscripciones" asp-action="Index">Inscripciones</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
@@ -55,6 +57,7 @@
         <script src="~/js/Categorias.js" asp-append-version="true"></script>
         <script src="~/js/Cursos.js" asp-append-version="true"></script>
         <script src="~/js/Estudiantes.js" asp-append-version="true"></script>
+        <script src="~/js/Inscripciones.js" asp-append-version="true"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
     <environment exclude="Development">

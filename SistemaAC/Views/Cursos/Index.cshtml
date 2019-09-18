@@ -99,8 +99,6 @@
                             <label for="Categoria" class="col-md-2 control-label">Categoria</label>
                             <div class="col-md-10">
                                 <select id='CategoriaCursos' class="form-control">
-                                   
-
                                 </select>
                             </div>
                         </div>
@@ -120,7 +118,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4  class="modal-title">Actualizar estado</h4>
+                <h4 class="modal-title">Actualizar estado</h4>
             </div>
             <div class="modal-body">
                 <h3 id="titleCurso" class="modal-title"></h3>
@@ -128,6 +126,44 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="button" onclick="editarEstadoCurso1()" class="btn btn-primary">Aceptar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" arial-labellebdy="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>
+                            Curso:
+                        </td>
+                        <td>
+                            <h5 id="cursoTitle"></h5>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Docente:
+                        </td>
+                        <td>
+                            <select id="instructorsCursos" class="form-control"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Fecha:
+                        </td>
+                        <td>
+                            <input type="datetime-local" for="Fecha" id="Fecha" placeholder="Fecha" style="width:210px" name="Fecha" class="form-control" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" onclick="instructorCurso()" class="btn btn-primary">Aceptar</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

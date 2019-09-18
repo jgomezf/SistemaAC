@@ -31,5 +31,7 @@ namespace SistemaAC.Data
         public DbSet<Instructor> Instructor { get; set; }
         public DbSet<Estudiante> Estudiante { get; set; }
         public DbSet<Persona> Persona { get; set; }
+        public DbSet<Asignacion> Asignacion { get; set; }
+        public DbSet<Inscripcion> Inscripcion { get; set; }
     }
 }

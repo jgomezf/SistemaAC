@@ -135,6 +135,9 @@ namespace SistemaAC.ModelsClass
                     "<td>" +
                     "<a data-toggle='modal' data-target='#modalCS' onclick='editarEstadoCurso(" + item.CursoID + ',' + 1 + ")'  class='btn btn-success'>Edit</a>" +
                     "</td>" +
+                    "<td> " +
+                        getInstructorsCurso(item.CursoID) +
+                    "</td>" +
                 "</tr>";
 
             }
@@ -210,6 +213,26 @@ namespace SistemaAC.ModelsClass
             });
 
             return errorList;
+        }
+
+        private String getInstructorsCurso(int cursoID)
+        {
+            String boton= string.Empty;
+            var data = context.Asignacion.Where(w => w.CursoID == cursoID).ToList();
+            if (data.Count > 0)
+            {
+                boton = "<a data-toggle='modal' data-target='.bs-example-modal-sm' onclick='getInstructorCurso(" + data[0].AsignacioniD + ',' + cursoID + ',' + data[0].InstructorID + ',' + 2 + ")' class='btn btn-info'>Actualizar</a>";
+            }
+            else
+            {
+                boton = "<a data-toggle='modal' data-target='.bs-example-modal-sm' onclick='getInstructorCurso(" + 0 + ',' + cursoID + ',' + 0 + ',' + 3 + ")' class='btn btn-info'>Asignar</a>";
+            }
+            return boton;
+        }
+
+        internal List<Instructor> getInstructors()
+        {
+            return context.Instructor.Where(w=> w.Estado == true).ToList();
         }
     }
 }

@@ -217,7 +217,7 @@ $('#modalAS').on('shown.bs.modal', () => {
     $('#Codigo').focus();
 });
 var idCategoria, funcion = 0, idCurso;
-var idEstudiante = 0;
+var idEstudiante = 0, asignacionID = 0;
 /**
  CODIGO DE CATEGORIAS
  */
@@ -226,7 +226,7 @@ var agregarCategoria = () => {
     var descripcion = document.getElementById("Descripcion").value;
     var estados = document.getElementById('Estado');
     var estado = estados.options[estados.selectedIndex].value;
-    if (funcion == 0) {
+    if (funcion === 0) {
         var action = 'Categorias/guardarCategoria';
     } else {
         var action = 'Categorias/editarCategoria';
@@ -260,14 +260,14 @@ var getCategorias = (id, fun) => {
     var action = 'Cursos/getCategorias';
     var cursos = new Cursos("", "", "", "", "", "", "", action);
     cursos.getCategorias(id, fun);
-}
+};
 var agregarCurso = () => {
     if (funcion === 0) {
         var action = 'Cursos/agregarCurso';
     } else {
         var action = 'Cursos/editarCurso';
     }
-    
+
     var nombre = document.getElementById("Nombre").value;
     var descripcion = document.getElementById("Descripcion").value;
     var creditos = document.getElementById("Creditos").value;
@@ -279,13 +279,13 @@ var agregarCurso = () => {
     var cursos = new Cursos(nombre, descripcion, creditos, horas, costo, estado, categoria, action);
     cursos.agregarCurso(idCurso, funcion);
     funcion = 0;
-}
+};
 var filtrarCurso = (numPagina, order) => {
     var valor = document.getElementById("filtrar").value;
     var action = 'Cursos/filtrarCurso';
     var cursos = new Cursos(valor, "", "", "", "", "", "", action);
     cursos.filtrarCurso(numPagina, order);
-}
+};
 var editarEstadoCurso = (id, fun) => {
     funcion = fun;
     idCurso = id;
@@ -301,6 +301,16 @@ var editarEstadoCurso1 = () => {
 var restablecer = () => {
     var cursos = new Cursos("", "", "", "", "", "", "", "");
     cursos.restablecer();
+};
+var getInstructorCurso = (asignacion, curso, instructor, fun) => {
+    idCurso = curso;
+    asignacionID = asignacion;
+    var action = 'Cursos/getCursos';
+    var cursos = new Cursos("", "", "", "", "", "", "", action);
+    cursos.getCursos(curso, fun);
+    action = 'Cursos/getInstructors';
+    cursos.getInstructors(instructor, fun, action);
+
 };
 /**
  CODIGO DE ESTUDIANTES
@@ -341,4 +351,5 @@ var deleteEstudiantes = () => {
 };
 var restablecerEstudiantes = () => {
     estudiante.restablecer();
-}
+};
+
