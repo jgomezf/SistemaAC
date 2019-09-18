@@ -24,11 +24,11 @@ class Cursos {
                 document.getElementById('CategoriaCursos').options[0] = new Option("Seleccione una categoria", 0);
                 if (0 < response.length) {
                     for (var i = 0; i < response.length; i++) {
-                        if (0 == funcion) {
+                        if (0 === funcion) {
                             document.getElementById('CategoriaCursos').options[count] = new Option(response[i].nombre, response[i].categoriaID);
                             count++;
                         } else {
-                            if (id == response[i].categoriaID) {
+                            if (id === response[i].categoriaID) {
                                 document.getElementById('CategoriaCursos').options[0] = new Option(response[i].nombre, response[i].categoriaID);
                                 document.getElementById('CategoriaCursos').selectedIndex = 0;
                                 break;
@@ -41,22 +41,22 @@ class Cursos {
         });
     }
     agregarCurso(id, funcion) {
-        if (this.nombre == "") {
+        if (this.nombre === "") {
             document.getElementById("Nombre").focus();
         } else {
-            if (this.descripcion == "") {
+            if (this.descripcion === "") {
                 document.getElementById("Descripcion").focus();
             } else {
-                if (this.creditos == "") {
+                if (this.creditos === "") {
                     document.getElementById("Creditos").focus();
                 } else {
-                    if (this.horas == "") {
+                    if (this.horas === "") {
                         document.getElementById("Horas").focus();
                     } else {
-                        if (this.costos == "") {
+                        if (this.costos === "") {
                             document.getElementById("Costo").focus();
                         } else {
-                            if (this.categoria == "0") {
+                            if (this.categoria === "0") {
                                 document.getElementById("mensaje").innerHTML = "Seleccione una categoria";
                             } else {
                                 var nombre = this.nombre;
@@ -75,7 +75,7 @@ class Cursos {
                                         id, nombre, descripcion, creditos, horas, costo, estado, categoria, funcion
                                     },
                                     success: (response) => {
-                                        if ("Save" == response[0].code) {
+                                        if ("Save" === response[0].code) {
                                             this.restablecer();
                                         } else {
                                             document.getElementById("mensaje").innerHTML = "No se puede guardar el curso";
@@ -92,7 +92,7 @@ class Cursos {
     filtrarCurso(numPagina, order) {
         var valor = this.nombre;
         var action = this.action;
-        if (valor == "") {
+        if (valor === "") {
             valor = "null";
         }
         $.ajax({
@@ -113,7 +113,7 @@ class Cursos {
             data: { id },
             success: (response) => {
                 console.log(response);
-                if (funcion == 0) {
+                if (funcion === 0) {
                     if (response[0].estado) {
                         document.getElementById("titleCurso").innerHTML = "Esta seguro de desactivar el curso " + response[0].nombre;
                     } else {
@@ -150,7 +150,7 @@ class Cursos {
         var action = this.action;
         promesa.then(data => {
            // id = data.id;
-            nombre = data.nombre
+            nombre = data.nombre;
             descripcion = data.descripcion;
             estado = data.estado;
             creditos = data.creditos;
@@ -163,7 +163,7 @@ class Cursos {
                 url: action,
                 data: { id, nombre, descripcion, estado, creditos, horas, costo, categoria, funcion },
                 success: (response) => {
-                    if (response[0].code == "Save") {
+                    if (response[0].code === "Save") {
                         this.restablecer();
                     } else {
                         document.getElementById("titleCurso").innerHTML = response[0].description;
