@@ -164,6 +164,7 @@ namespace SistemaAC.ModelsClass
             data.Add(dataObj);
             return data;
         }
+        
         public List<IdentityError> editarCurso(int id, string nombre, string descripcion, byte creditos, byte horas, decimal costo, Boolean estado, int categoriaID, int funcion)
         {
             switch (funcion)
@@ -233,6 +234,38 @@ namespace SistemaAC.ModelsClass
         internal List<Instructor> getInstructors()
         {
             return context.Instructor.Where(w=> w.Estado == true).ToList();
+        }
+        
+        internal List<IdentityError> instructorCursos(List<Asignacion> asig)
+        {
+            var asignacion = new Asignacion
+            {
+                AsignacioniD = asig[0].AsignacioniD,
+                CursoID = asig[0].CursoID,
+                InstructorID = asig[0].InstructorID,
+                Fecha = asig[0].Fecha,
+            };
+
+            try
+            {
+                context.Update(asignacion);
+                context.SaveChanges();
+                code = "Save";
+                des = "Save";
+            }
+            catch (Exception ex)
+            {
+                code = "Error";
+                des = ex.Message;
+            }
+
+            errorList.Add(new IdentityError
+            {
+                Code = code,
+                Description = des
+            });
+
+            return errorList;
         }
     }
 }

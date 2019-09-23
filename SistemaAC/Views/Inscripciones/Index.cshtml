@@ -1,0 +1,117 @@
+﻿
+@{
+    ViewData["Title"] = "Inscripciones";
+}
+
+<h2>Inscripciones</h2>
+
+<div class="form-group">
+    <div class="col-md-12">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>
+                        <input id="Estudiante" name="Estudiante" placeholder="Estudiante" onKeyUp="" class="form-control" />
+                    </td>
+                    <td>
+                        <button type="button" data-toggle='modal' data-target='#modalEstudiante' class="btn btn-primary">Selecionar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>
+                        Curso
+                    </td>
+                    <td>
+                        <input id="InscripcionCurso" name="InscripcionCurso" placeholder="Curso" onKeyUp="" class="form-control" />
+                    </td>
+                    <td>
+                        <button type="button" data-toggle='modal' data-target='#modalEstudiante' class="btn btn-primary">Selecionar</button>
+                    </td>
+                    <td>
+                        Grado:
+                    </td>
+                    <td>
+                        <input type="number" />
+                    </td>
+                    <td>
+                        Costo:
+                    </td>
+                    <td>
+                        <input id="CostoEstdiante" name="CostoEstdiante" placeholder="Costo" onKeyUp="" class="form-control" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Curso
+                    </th>
+                    <th>
+                        Categoria
+                    </th>
+                    <th>
+                        Grado
+                    </th>
+                    <th>
+                        Pago
+                    </th>
+                    <th>
+                        Fecha
+                    </th>
+                    <th>
+                        Opciones
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="resultSearch">
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal fade" id="modalEstudiante" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Seleccionar Estdiante</h4>
+            </div>
+            <div class="modal-body">
+                <input id="filtrar" name="filtrar" placeholder="Estudiante" onKeyUp="filtrarEstudianteInscripcion();" class="form-control" />
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Seleccionar
+                            </th>
+                            <th>
+                                Apeliido Nombre
+                            </th>
+                            <th>
+                                Documento
+                            </th>
+                            <th>
+                                Email
+                            </th>
+                            <th>
+                                Telefono
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultSearchEstudiante">
+                    </tbody>
+                </table>
+            </div>
+            <label id="mensajeEstudiante" class="col-md-2 control-label"></label>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" onclick="getEstudiante();" class="btn btn-primary">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>

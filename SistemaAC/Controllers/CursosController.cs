@@ -52,6 +52,12 @@ namespace SistemaAC.Controllers
         {
             return cursoModels.getInstructors();
         }
-    
+
+        public List<IdentityError> instructorCursos(List<Asignacion> asignacion)
+        {
+            return cursoModels.instructorCursos(asignacion);
+        }
+
+
     }
 }

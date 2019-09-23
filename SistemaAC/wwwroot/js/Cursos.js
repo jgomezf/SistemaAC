@@ -202,6 +202,26 @@ class Cursos {
         );
     }
 
+    instructorCursos(asignacionID, idCurso, instructorID, fecha, action) {
+        var asignacion = new Array({
+            asignacionID: asignacionID,
+            cursoID: idCurso,
+            instructorID: instructorID,
+            fecha: fecha
+        });
+        $.post(
+            action,
+            { asignacion },
+            (response) => {
+                console.log(response);
+                if (response[0].code === "Save") {
+                    this.restablecer();
+                } else {
+                    document.getElementById("cursoTitle").innerHTML = response[0].descripcion;
+                }
+            }
+        );
+    }
     restablecer() {
         document.getElementById("Nombre").value = "";
         document.getElementById("Descripcion").value = "";
@@ -214,5 +234,6 @@ class Cursos {
         filtrarCurso(1, "nombre");
         $('#modalCS').modal('hide');
         $('#ModalEstadoCurso').modal('hide');
+        $('#ModalAsignacionInstructor').modal('hide');
     }
 }

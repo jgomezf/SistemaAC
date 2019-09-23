@@ -207,6 +207,9 @@ $().ready(() => {
         case "/Estudiantes":
             filtrarEstudiantes(1, "nombre");
             break;
+        case "/Inscripciones":
+            filtrarInscripcion();
+            break;
     }
     
 });
@@ -312,6 +315,16 @@ var getInstructorCurso = (asignacion, curso, instructor, fun) => {
     cursos.getInstructors(instructor, fun, action);
 
 };
+var instructorCurso = () => {
+    let action = 'Cursos/instructorCursos';
+    let instructors = document.getElementById("instructorsCursos");
+    let instructor = instructors.options[instructors.selectedIndex].value;
+    let fecha = document.getElementById("Fecha").value;
+    var cursos = new Cursos("", "", "", "", "", "", "", "");
+    cursos.instructorCursos(asignacionID, idCurso, instructor, fecha, action);
+    asignacionID = 0;
+    idCurso = 0;
+};
 /**
  CODIGO DE ESTUDIANTES
  */
@@ -352,4 +365,32 @@ var deleteEstudiantes = () => {
 var restablecerEstudiantes = () => {
     estudiante.restablecer();
 };
-
+/**
+ CODIGO DE INSCRIPCIONES
+ */
+var inscripciones = new Inscripciones();
+var filtrarEstudianteInscripcion = () => {
+    var action = 'Inscripciones/filtrarEstudiantesIns';
+    var valor = document.getElementById("filtrar").value;
+    inscripciones.filtrarEstudiantes(valor, action);
+};
+var getEstudiante = () => {
+    let count = 0, id;
+    let chk = document.getElementsByName('cboxEstudiante[]');
+    for (var i = 0; i < chk.length; i++) {
+        if (chk[i].checked) {
+            id = chk[i].value;
+            count++;
+        }
+    }
+    if (1 < count) {
+        document.getElementById("mensajeEstudiante").innerHTML = "Seleccione un estudiante";
+    } else {
+        var action = "Inscripciones/getEstudiante";
+        inscripciones.getEstudiante(id, action);
+    }
+};
+var filtrarInscripcion = (numPagina, order) => {
+    var valor = document.getElementById("filtrar").value;
+    var action = 'Inscripciones/filtrarInscripciones';
+};
