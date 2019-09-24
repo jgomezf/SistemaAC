@@ -16,6 +16,19 @@ class MisCursos {
             }
         );
     }
+    getMisCursos(query, result) {
+        $.ajax({
+            type: "POST",
+            url: "MisCursos/getMisCursos",
+            data: { query },
+            success: (response) => {
+                result($.map(response, (item) => {
+                    return item.nombre;
+                }));
+            }
+        });
+    }
+
     getMisCurso(curso, id) {
         document.getElementById("Curso").value = curso[0];
         document.getElementById("Estudiante").value = curso[1];

@@ -88,7 +88,34 @@ namespace SistemaAC.ModelsClass
             data.Add(dataObj);
             return data;
         }
-    
+
+        internal List<Curso> getMisCursos(string query)
+        {
+            cursos = getCursos(query);
+            cursos.ForEach(item =>
+            {
+                if (getAsignacion2(item.CursoID))
+                {
+                    misCursos.Add(new Curso
+                    {
+                        CursoID = item.CursoID,
+                        Nombre = item.Nombre
+                    });
+                }
+            });
+            return misCursos;
+        }
+
+        private bool getAsignacion2(int cursoID)
+        {
+            var asignacion = context.Asignacion.Where(c => c.CursoID == cursoID).ToList();
+            if (0 < asignacion.Count)
+            {
+                return true;
+            }else
+                return false;
+        }
+
         public List<Curso> getCursos(string curso)
         {
             return context.Curso.Where(c => c.Nombre.ToLower().StartsWith(curso.ToLower())).ToList();

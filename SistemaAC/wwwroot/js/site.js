@@ -450,3 +450,11 @@ var filtrarMisCurso = (pagina) => {
 var getMisCurso = (curso, id) => {
     misCursos.getMisCurso(curso, id);
 };
+$("#Curso").typeahead({
+    source: (query, result) => {
+        getMisCursos(query, result);
+    }
+});
+var getMisCursos = (query, result) => {
+    misCursos.getMisCursos(query, result);
+}

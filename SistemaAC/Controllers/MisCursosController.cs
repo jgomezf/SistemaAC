@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SistemaAC.Data;
+using SistemaAC.Models;
 using SistemaAC.ModelsClass;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,11 @@ namespace SistemaAC.Controllers
         public List<object[]> filtrarMisCurso(int numPagina, string valor)
         {
             return misCursos.filtrarMisCurso(numPagina, valor);
+        }
+
+        public List<Curso> getMisCursos(string query)
+        {
+            return misCursos.getMisCursos(query);
         }
     }
 }
