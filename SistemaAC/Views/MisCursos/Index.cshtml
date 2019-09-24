@@ -1,7 +1,97 @@
 ﻿
 @{
-    ViewData["Title"] = "MisCursos";
+    ViewData["Title"] = "Mis cursos";
 }
 
 <h2>Mis Cursos</h2>
-
+<a asp-area="" asp-controller="Inscripciones" asp-action="Index">Inscripciones</a>
+<div class="form-group">
+    <div class="col-md-6">
+        <input id="filtrar" name="filtrar" placeholder="Buscar" onKeyUp="filtrarMisCurso(1);" class="form-control" />
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Curso
+            </th>
+            <th>
+                Estudiante
+            </th>
+            <th>
+                Docente
+            </th>
+            <th>
+                Grado
+            </th>
+            <th>
+                Pago
+            </th>
+            <th>
+                Fecha
+            </th>
+            <th>
+                Opciones
+            </th>
+        </tr>
+    </thead>
+    <tbody id="resultMisCursos"></tbody>
+</table>
+<div class="modal fade" id="modalMisCS" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Mi curso</h4>
+            </div>
+            <div class="modal-body">
+                <form asp-action="">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="Curso" class="col-md-2 control-label">Curso</label>
+                            <div class="col-md-10">
+                                <input for="Curso" id="Curso" placeholder="Curso" name="Curso" class="form-control bs-autocomplete" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Estudiante" class="col-md-2 control-label">Estudiante</label>
+                            <div class="col-md-10">
+                                <input for="Estudiante" id="Estudiante" placeholder="Estudiante" name="Estudiante" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Docente" class="col-md-2 control-label">Docente</label>
+                            <div class="col-md-10">
+                                <input for="Docente" id="Docente" placeholder="Docente" name="Docente" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Grado" class="col-md-2 control-label">Grado</label>
+                            <div class="col-md-10">
+                                <input for="Grado" id="Grado" placeholder="Grado" name="Grado" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Pago" class="col-md-2 control-label">Pago</label>
+                            <div class="col-md-10">
+                                <input for="Pago" id="Pago" placeholder="Pago" name="Pago" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Fecha" class="col-md-2 control-label">Fecha </label>
+                            <div class="col-md-10">
+                                <input type="datetime-local" for="Fecha" id="Fecha" placeholder="Fecha" name="Fecha" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <label id="mensaje" class="col-md-2 control-label"></label>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" onclick="actualizarMisCurso()" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -212,6 +212,9 @@ $().ready(() => {
             filtrarCursoInscripcion();
             mostrarCursos();
             break;
+        case "/MisCursos":
+            filtrarMisCurso(1);
+            break;
     }
     
 });
@@ -419,8 +422,6 @@ var addCursos = () => {
     var grado = document.getElementById("grado").value;
     var costo = document.getElementById("CostoCurso").value;
     inscripciones.addCursos(estudiante, curso, grado, costo);
-    var action = 'Inscripciones/addCurso';
-
 };
 var restablecerInscripcion = () => {
     inscripciones.deleteData();
@@ -437,4 +438,15 @@ var guardarCursos = () => {
 var filtrarInscripcion = (numPagina, order) => {
     var valor = document.getElementById("filtrar").value;
     var action = 'Inscripciones/filtrarInscripciones';
+};
+/*
+ CODIGO DE MIS CURSOS
+ */
+var misCursos = new MisCursos();
+var filtrarMisCurso = (pagina) => {
+    var valor = document.getElementById("filtrar").value;
+    misCursos.filtrarMisCurso(pagina, valor);
+};
+var getMisCurso = (curso, id) => {
+    misCursos.getMisCurso(curso, id);
 };
