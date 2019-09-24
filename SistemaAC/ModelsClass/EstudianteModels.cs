@@ -138,8 +138,8 @@ namespace SistemaAC.ModelsClass
                 if (numPagina > 1)
                 {
                     pagina = numPagina - 1;
-                    paginador += "<a class='btn btn-default' onclick='filtrarEstudiantes(" + 1 + ',' + '"' + order + '"' + ")'> << </a>" +
-                    "<a class='btn btn-default' onclick='filtrarEstudiantes(" + pagina + ',' + '"' + order + '"' + ")'> < </a>";
+                    paginador += " <a class='btn btn-default' onclick='filtrarEstudiantes(" + 1 + ',' + '"' + order + '"' + ")'> << </a>" +
+                    "<a class='btn btn-default' onclick='filtrarEstudiantes(" + pagina + ',' + '"' + order + '"' + ")'> < </a> ";
                 }
 
                 if (1 < can_paginas)

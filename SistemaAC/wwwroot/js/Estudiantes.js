@@ -61,18 +61,20 @@ class Estudiantes {
             action,
             { valor, numPagina, order },
             (response) => {
+                console.log(response);
                 $("#resultSearch").html(response[0][0]);
                 $("#paginado").html(response[0][1]);
             });
     }
-
-    getEstudiante(id, fun, action) {
+    getEstudiante(id, funcion, action) {
         $.post(
             action,
-            { id },
+            {
+                id
+            },
             (response) => {
-                //console.log(response);
-                if (fun === 1) {
+                console.log(response);
+                if (funcion === 1) {
                     idEstudiante = response[0].id;
                     document.getElementById("Codigo").value = response[0].codigo;
                     document.getElementById("Nombre").value = response[0].nombres;
@@ -85,7 +87,7 @@ class Estudiantes {
                     document.getElementById("Estado").checked = response[0].estado;
                 }
                 var action = 'Estudiantes/guardarEstudiante';
-                this.editarEstudiante(response, fun, action);
+                this.editarEstudiante(response, funcion, action);
             });
     }
     editarEstudiante(response, funcion, action) {

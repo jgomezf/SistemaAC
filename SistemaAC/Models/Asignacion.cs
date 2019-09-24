@@ -7,7 +7,7 @@ namespace SistemaAC.Models
 {
     public class Asignacion
     {
-        public int AsignacioniD { get; set; }
+        public int AsignacionID { get; set; }
         public int CursoID { get; set; }
         public int InstructorID { get; set; }
         public DateTime Fecha { get; set; }

@@ -47,15 +47,15 @@ namespace SistemaAC.Controllers
         {
             return cursoModels.editarCurso(id, nombre, descripcion, creditos, horas, costo, estado, categoria, funcion);
         }
-
-        public List<Instructor> GetInstructors()
+		
+        public List<Instructor> getInstructors()
         {
             return cursoModels.getInstructors();
         }
 
-        public List<IdentityError> instructorCursos(List<Asignacion> asignacion)
+        public List<IdentityError> instructorCurso(List<Asignacion> asignacion)
         {
-            return cursoModels.instructorCursos(asignacion);
+            return cursoModels.instructorCurso(asignacion);
         }
 
 

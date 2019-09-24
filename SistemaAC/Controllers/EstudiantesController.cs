@@ -48,7 +48,7 @@ namespace SistemaAC.Controllers
         {
             return estudiante.deleteEstudiante(id);
         }
-        public int MyProperty { get; set; }
+        
         // GET: Estudiantes/Details/5
         public async Task<IActionResult> Details(int? id)
         {

@@ -222,11 +222,11 @@ namespace SistemaAC.ModelsClass
             var data = context.Asignacion.Where(w => w.CursoID == cursoID).ToList();
             if (data.Count > 0)
             {
-                boton = "<a data-toggle='modal' data-target='.bs-example-modal-sm' onclick='getInstructorCurso(" + data[0].AsignacioniD + ',' + cursoID + ',' + data[0].InstructorID + ',' + 2 + ")' class='btn btn-info'>Actualizar</a>";
+                boton = "<a data-toggle='modal' data-target='.bs-example-modal-sm' onclick='getInstructorCurso(" + data[0].AsignacionID + ',' + cursoID + ',' + data[0].InstructorID + ',' + 2 + ")'  class='btn btn-info'>Actualizar</a>";
             }
             else
             {
-                boton = "<a data-toggle='modal' data-target='.bs-example-modal-sm' onclick='getInstructorCurso(" + 0 + ',' + cursoID + ',' + 0 + ',' + 3 + ")' class='btn btn-info'>Asignar</a>";
+                boton = "<a data-toggle='modal' data-target='.bs-example-modal-sm' onclick='getInstructorCurso(" + 0 + ',' + cursoID + ',' + 0 + ',' + 3 + ")'  class='btn btn-info'>Asignar</a>";
             }
             return boton;
         }
@@ -236,11 +236,11 @@ namespace SistemaAC.ModelsClass
             return context.Instructor.Where(w=> w.Estado == true).ToList();
         }
         
-        internal List<IdentityError> instructorCursos(List<Asignacion> asig)
+        internal List<IdentityError> instructorCurso(List<Asignacion> asig)
         {
             var asignacion = new Asignacion
             {
-                AsignacioniD = asig[0].AsignacioniD,
+                AsignacionID = asig[0].AsignacionID,
                 CursoID = asig[0].CursoID,
                 InstructorID = asig[0].InstructorID,
                 Fecha = asig[0].Fecha,
@@ -255,7 +255,7 @@ namespace SistemaAC.ModelsClass
             }
             catch (Exception ex)
             {
-                code = "Error";
+                code = "error";
                 des = ex.Message;
             }
 

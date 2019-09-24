@@ -77,7 +77,7 @@ function getRoles(action) {
         url: action,
         data: {},
         success: function (response) {
-            if (j==0){
+            if (j===0){
                 for (var i = 0; i < response.length; i++){
                     document.getElementById('Select').options[i] = new Option(response[i].text, response[i].value);
                     document.getElementById('SelectNuevo').options[i] = new Option(response[i].text, response[i].value);
@@ -121,7 +121,7 @@ function editarUsuario(action) {
             securityStamp, twoFactorEnabled,selectRole
         },
         success: function (response) {
-            if (response == "Save") {
+            if (response === "Save") {
                 window.location.href = "Usuarios";
             }
             else {
@@ -163,12 +163,12 @@ function crearUsuario(action) {
     selectRole = role.options[role.selectedIndex].text;
 
     //Vamos a validar ahora que los datos del usuario no estén vacíos
-    if (email == "") {
+    if (email === "") {
         $('#EmailNuevo').focus();
         alert("Ingrese el email del usuario");
     }
     else {
-        if (passwordHash=="") {
+        if (passwordHash === "") {
             $('#PasswordHashNuevo').focus();
             alert("Ingrese el password del usuario");
         }
@@ -208,7 +208,9 @@ $().ready(() => {
             filtrarEstudiantes(1, "nombre");
             break;
         case "/Inscripciones":
-            filtrarInscripcion();
+            filtrarEstudianteInscripcion();
+            filtrarCursoInscripcion();
+            mostrarCursos();
             break;
     }
     
@@ -256,7 +258,7 @@ var editarCategoria = () => {
     var categoria = new Categorias("", "", "", action);
     categoria.editarCategoria(idCategoria, funcion);
 }
-/**
+/*
  CODIGO DE CURSOS
  */
 var getCategorias = (id, fun) => {
@@ -311,17 +313,17 @@ var getInstructorCurso = (asignacion, curso, instructor, fun) => {
     var action = 'Cursos/getCursos';
     var cursos = new Cursos("", "", "", "", "", "", "", action);
     cursos.getCursos(curso, fun);
-    action = 'Cursos/getInstructors';
+    var action = 'Cursos/getInstructors';
     cursos.getInstructors(instructor, fun, action);
 
 };
 var instructorCurso = () => {
-    let action = 'Cursos/instructorCursos';
-    let instructors = document.getElementById("instructorsCursos");
+    let action = 'Cursos/instructorCurso';
+    let instructors = document.getElementById('instructorsCursos');
     let instructor = instructors.options[instructors.selectedIndex].value;
     let fecha = document.getElementById("Fecha").value;
     var cursos = new Cursos("", "", "", "", "", "", "", "");
-    cursos.instructorCursos(asignacionID, idCurso, instructor, fecha, action);
+    cursos.instructorCurso(asignacionID, idCurso, instructor, fecha, action);
     asignacionID = 0;
     idCurso = 0;
 };
@@ -358,7 +360,7 @@ var deleteEstudiante = (id) => {
     idEstudiante = id;
 };
 var deleteEstudiantes = () => {
-    action = 'Estudiantes/deleteEstudiante';
+    var action = 'Estudiantes/deleteEstudiante';
     estudiante.deleteEstudiante(idEstudiante, action);
     idEstudiante = 0;
 };
@@ -372,12 +374,12 @@ var inscripciones = new Inscripciones();
 var filtrarEstudianteInscripcion = () => {
     var action = 'Inscripciones/filtrarEstudiantesIns';
     var valor = document.getElementById("filtrar").value;
-    inscripciones.filtrarEstudiantes(valor, action);
+    inscripciones.filtrarDataInscripcion(valor, action,1);
 };
 var getEstudiante = () => {
     let count = 0, id;
     let chk = document.getElementsByName('cboxEstudiante[]');
-    for (var i = 0; i < chk.length; i++) {
+    for (i = 0; i < chk.length; i++) {
         if (chk[i].checked) {
             id = chk[i].value;
             count++;
@@ -386,9 +388,51 @@ var getEstudiante = () => {
     if (1 < count) {
         document.getElementById("mensajeEstudiante").innerHTML = "Seleccione un estudiante";
     } else {
-        var action = "Inscripciones/getEstudiante";
-        inscripciones.getEstudiante(id, action);
+        var action = 'Inscripciones/getEstudiante';
+        inscripciones.getData(id, action,1);
     }
+};
+var filtrarCursoInscripcion = () => {
+    var action = 'Inscripciones/filtrarCurso';
+    var valor = document.getElementById("filtrarCurso").value;
+    inscripciones.filtrarDataInscripcion(valor, action, 2);
+};
+var getCurso = () => {
+    let count = 0, id;
+    let chk = document.getElementsByName('cboxCurso[]');
+    for (i = 0; i < chk.length; i++) {
+        if (chk[i].checked) {
+            id = chk[i].value;
+            count++;
+        }
+    }
+    if (1 < count) {
+        document.getElementById("mensajeCurso").innerHTML = "Seleccione un curso";
+    } else {
+        var action = 'Inscripciones/getCurso';
+        inscripciones.getData(id, action, 2);
+    }
+};
+var addCursos = () => {
+    var estudiante = document.getElementById("Estudiante").value;
+    var curso = document.getElementById("InscripcionCurso").value;
+    var grado = document.getElementById("grado").value;
+    var costo = document.getElementById("CostoCurso").value;
+    inscripciones.addCursos(estudiante, curso, grado, costo);
+    var action = 'Inscripciones/addCurso';
+
+};
+var restablecerInscripcion = () => {
+    inscripciones.deleteData();
+};
+var mostrarCursos = () => {
+    inscripciones.mostrarCursos();
+};
+var deleteCurso = (id) => {
+    inscripciones.deleteCurso(id);
+};
+var guardarCursos = () => {
+    inscripciones.guardarCursos();
 };
 var filtrarInscripcion = (numPagina, order) => {
     var valor = document.getElementById("filtrar").value;

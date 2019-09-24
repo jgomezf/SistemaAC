@@ -192,7 +192,7 @@ class Cursos {
                                 document.getElementById('instructorsCursos').options[0] = new Option(response[i].nombres, response[i].id);
                                 document.getElementById('instructorsCursos').selectedIndex = 0;
                             } else {
-                                document.getElementById('instructorsCursos').options[0] = new Option(response[i].nombres, response[i].id);
+                                document.getElementById('instructorsCursos').options[count] = new Option(response[i].nombres, response[i].id);
                                 count++;
                             }
                         }
@@ -202,7 +202,7 @@ class Cursos {
         );
     }
 
-    instructorCursos(asignacionID, idCurso, instructorID, fecha, action) {
+    instructorCurso(asignacionID, idCurso, instructorID, fecha, action) {
         var asignacion = new Array({
             asignacionID: asignacionID,
             cursoID: idCurso,
@@ -217,7 +217,7 @@ class Cursos {
                 if (response[0].code === "Save") {
                     this.restablecer();
                 } else {
-                    document.getElementById("cursoTitle").innerHTML = response[0].descripcion;
+                    document.getElementById("cursoTitle").innerHTML = response[0].description;
                 }
             }
         );
@@ -234,6 +234,6 @@ class Cursos {
         filtrarCurso(1, "nombre");
         $('#modalCS').modal('hide');
         $('#ModalEstadoCurso').modal('hide');
-        $('#ModalAsignacionInstructor').modal('hide');
+        $('.bs-example-modal-sm').modal('hide');
     }
 }
