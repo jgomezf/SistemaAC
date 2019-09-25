@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using SistemaAC.Data;
 using SistemaAC.Models;
 using SistemaAC.ModelsClass;
@@ -30,6 +33,22 @@ namespace SistemaAC.Controllers
         public List<Curso> getMisCursos(string query)
         {
             return misCursos.getMisCursos(query);
+        }
+
+        public List<Estudiante> getMisEstudiantes(string query)
+        {
+            return misCursos.getMisEstudiantes(query);
+        }
+        public List<Instructor> getMisDocentes(string query)
+        {
+            return misCursos.getMisDocentes(query);
+        }
+        public List<IdentityError> actualizarMisCurso(String data)
+        {
+            var array = JArray.Parse(data);
+            var dataCurso = array[0];
+            DataCurso model = JsonConvert.DeserializeObject<DataCurso>(dataCurso.ToString());
+            return misCursos.actualizarMisCurso(model);
         }
     }
 }

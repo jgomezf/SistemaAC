@@ -457,4 +457,23 @@ $("#Curso").typeahead({
 });
 var getMisCursos = (query, result) => {
     misCursos.getMisCursos(query, result);
-}
+};
+$("#Estudiante").typeahead({
+    source: (query, result) => {
+        getMisEstudiantes(query, result);
+    }
+});
+var getMisEstudiantes = (query, result) => {
+    misCursos.getMisEstudiantes(query, result);
+};
+$("#Docente").typeahead({
+    source: (query, result) => {
+        getMisDocentes(query, result);
+    }
+});
+var getMisDocentes = (query, result) => {
+    misCursos.getMisDocentes(query, result);
+};
+var actualizarMisCurso = () => {
+    misCursos.actualizarMisCurso();
+};
