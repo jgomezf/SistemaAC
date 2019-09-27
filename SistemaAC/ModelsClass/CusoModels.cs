@@ -8,10 +8,8 @@ using SistemaAC.Models;
 
 namespace SistemaAC.ModelsClass
 {
-    public class CusoModels
+    public class CusoModels:ListObject
     {
-        private ApplicationDbContext context;
-        private List<IdentityError> errorList = new List<IdentityError>();
         private string code = "", des = "";
         private Boolean estados;
         public CusoModels(ApplicationDbContext context)
@@ -63,12 +61,13 @@ namespace SistemaAC.ModelsClass
             });
             return errorList;
         }
-        public List<object[]> filtrarCurso(int numPagina, string valor, string order)
+        
+        public List<object[]> filtrarCurso(int numPagina, string valor, string order, int funcion)
         {
-            int cant, numRegistros = 0, inicio = 0, reg_por_pagina = 10;
+            int cant, numRegistros = 0, inicio = 0, reg_por_pagina = 1;
             int can_paginas, pagina;
             string dataFilter = "", paginador = "", Estado = null;
-            List<object[]> data = new List<object[]>();
+
             IEnumerable<Curso> query;
             List<Curso> cursos = null;
             switch (order)
@@ -132,12 +131,7 @@ namespace SistemaAC.ModelsClass
                     "<td>" + item.Costo + "</td>" +
                     "<td>" + Estado + " </td>" +
                     "<td>" + categoria[0].Nombre + "</td>" +
-                    "<td>" +
-                    "<a data-toggle='modal' data-target='#modalCS' onclick='editarEstadoCurso(" + item.CursoID + ',' + 1 + ")'  class='btn btn-success'>Edit</a>" +
-                    "</td>" +
-                    "<td> " +
-                        getInstructorsCurso(item.CursoID) +
-                    "</td>" +
+                    dataBoton(item, funcion) +
                 "</tr>";
 
             }
@@ -266,6 +260,39 @@ namespace SistemaAC.ModelsClass
             });
 
             return errorList;
+        }
+
+        private String dataBoton(Curso item, int funcion)
+        {
+            var data = "";
+            if (funcion == 1)
+            {
+                data = "<td>" +
+                    "<a data-toggle='modal' data-target='#modalCS' onclick='editarEstadoCurso(" + item.CursoID + ',' + 1 + ")'  class='btn btn-success'>Edit</a>" +
+                    "</td>" +
+                    "<td> " +
+                        getInstructorsCurso(item.CursoID) +
+                    "</td>";
+            }
+            return data;
+        }
+
+        public int[] estadosCursos()
+        {
+            int estado1 = 0, estado2 = 0;
+            var listCursos = context.Curso.ToList();
+            listCursos.ForEach(item => {
+                if (item.Estado)
+                {
+                    estado1++;
+                }
+                else
+                {
+                    estado2++;
+                }
+            }) ;
+            int[] estados = { estado1, estado2 };
+            return estados;
         }
     }
 }

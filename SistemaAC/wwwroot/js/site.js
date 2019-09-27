@@ -194,7 +194,9 @@ function crearUsuario(action) {
 }
 $().ready(() => {
     var URLactual = window.location;
-    document.getElementById("filtrar").focus();
+    //if (URLactual.pathname !== "/Reportes")
+        document.getElementById("filtrar").focus();
+
     switch (URLactual.pathname) {
         case "/Categorias":
             filtrarDatos(1, "nombre");
@@ -215,6 +217,8 @@ $().ready(() => {
         case "/MisCursos":
             filtrarMisCurso(1);
             break;
+        case "/Reportes":
+            estadosCursos("graficaCursos");
     }
     
 });
@@ -224,6 +228,14 @@ $('#modalCS').on('shown.bs.modal', () => {
 $('#modalAS').on('shown.bs.modal', () => {
     $('#Codigo').focus();
 });
+
+var PrintThisDiv = (id) => {
+    var printContents = document.getElementById(id).innerHTML;
+    var originalContents = document.body.innerHTML;
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+};
 var idCategoria, funcion = 0, idCurso;
 var idEstudiante = 0, asignacionID = 0;
 /**
@@ -289,10 +301,15 @@ var agregarCurso = () => {
     funcion = 0;
 };
 var filtrarCurso = (numPagina, order) => {
-    var valor = document.getElementById("filtrar").value;
     var action = 'Cursos/filtrarCurso';
+    var valor = document.getElementById("filtrar").value;
     var cursos = new Cursos(valor, "", "", "", "", "", "", action);
-    cursos.filtrarCurso(numPagina, order);
+    if (funcion === 0) {        
+        cursos.filtrarCurso(numPagina, order);
+    } else {
+        cursos.reportesCursos(numPagina);
+    }
+    
 };
 var editarEstadoCurso = (id, fun) => {
     funcion = fun;
@@ -329,6 +346,16 @@ var instructorCurso = () => {
     cursos.instructorCurso(asignacionID, idCurso, instructor, fecha, action);
     asignacionID = 0;
     idCurso = 0;
+};
+var reportesCursos = () => {
+    var cursos = new Cursos("", "", "", "", "", "", "", "");
+    funcion = 1;
+    cursos.reportesCursos(1);
+};
+
+var estadosCursos = (div) => {
+    var cursos = new Cursos("", "", "", "", "", "", "", "");
+    cursos.estadosCursos(div);
 };
 /**
  CODIGO DE ESTUDIANTES

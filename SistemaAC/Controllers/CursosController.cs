@@ -35,9 +35,9 @@ namespace SistemaAC.Controllers
         {
             return cursoModels.agregarCurso(id, nombre, descripcion, creditos, horas, costo, estado, categoria, funcion);
         }
-        public List<object[]> filtrarCurso(int numPagina, string valor, string order)
+        public List<object[]> filtrarCurso(int numPagina, string valor, string order, int funcion)
         {
-            return cursoModels.filtrarCurso(numPagina, valor, order);
+            return cursoModels.filtrarCurso(numPagina, valor, order, funcion);
         }
         public List<Curso> getCursos(int id)
         {

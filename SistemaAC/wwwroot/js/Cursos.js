@@ -92,13 +92,14 @@ class Cursos {
     filtrarCurso(numPagina, order) {
         var valor = this.nombre;
         var action = this.action;
+        var funcion = 1;
         if (valor === "") {
             valor = "null";
         }
         $.ajax({
             type: "POST",
             url: action,
-            data: { valor, numPagina, order },
+            data: { valor, numPagina, order, funcion},
             success: (response) => {
                 $("#resultSearch").html(response[0][0]);
                 $("#paginado").html(response[0][1]);
@@ -219,6 +220,38 @@ class Cursos {
                 } else {
                     document.getElementById("cursoTitle").innerHTML = response[0].description;
                 }
+            }
+        );
+    }
+
+    reportesCursos(numPagina) {
+        var valor = this.nombre;
+        var order = "nombre";
+        var funcion = 2;
+        if (valor === "") {
+            valor = "null";
+        }
+        $.post(
+            "Reportes/reportesCursos",
+            { valor, numPagina, order, funcion },
+            (response) => {
+                console.log(response);
+                document.getElementById("titleReportes").innerHTML = "Cursos del Sistema";
+                $("#resultReportes").html(response[0][0]); 
+                $("#paginadorReportes").html(response[0][1]); 
+                $("#thead").html(response[1][0]);
+            }
+        );
+    }
+    estadosCursos(div) {
+        var graficas = new Graficas();
+        $.post(
+            "Reportes/estadosCursos",
+            { },
+            (response) => {
+                document.getElementById("titleGraficas").innerHTML = "Estados de cursos";
+                graficas.estadosCursos(response, div);
+                console.log(response);
             }
         );
     }

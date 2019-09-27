@@ -38,6 +38,7 @@
                     <li><a asp-area="" asp-controller="Estudiantes" asp-action="Index">Estudiantes</a></li>
                     <li><a asp-area="" asp-controller="Instructors" asp-action="Index">Instructor</a></li>
                     <li><a asp-area="" asp-controller="MisCursos" asp-action="Index">Mis Cursos</a></li>
+                    <li><a asp-area="" asp-controller="Reportes" asp-action="Index">Reportes</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
@@ -52,6 +53,8 @@
     </div>
 
     <environment include="Development">
+        @*<script src="https://www.gstatic.com/charts/loader.js" app-append-version="true"></script>*@
+        <script src="~/js/loader.js" asp-append-version="true"></script>
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/typeahead.js" asp-append-version="true"></script>
@@ -60,6 +63,7 @@
         <script src="~/js/Estudiantes.js" asp-append-version="true"></script>
         <script src="~/js/Inscripciones.js" asp-append-version="true"></script>
         <script src="~/js/MisCursos.js" asp-append-version="true"></script>
+        <script src="~/js/Graficar.js" asp-append-version="true"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
     <environment exclude="Development">

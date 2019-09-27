@@ -1,0 +1,126 @@
+﻿
+@{
+    ViewData["Title"] = "Reportes";
+}
+
+<h2>Sistema de reportes</h2>
+<div class="conten">
+    <div class="row">
+        <div class="col-xs-6 col-md-3">
+            <div class="panel  panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Cursos</h3>
+                </div>
+                <div class="panel-body">
+                    <a href="#" data-toggle='modal' data-target='#modalReportes' onclick="reportesCursos();" class="thumbnail">
+                        <img src="~/images/laptop.svg" alt="...">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="panel  panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Grafica de los Cursos</h3>
+                </div>
+                <div class="panel-body">
+                    <a href="#" data-toggle='modal' data-target='#modalGraficas' onclick="estadosCursos('graficasCursos');" class="thumbnail">
+                        @*<img src="~/images/insert_chart.svg" alt="...">*@
+                        <div id="graficaCursos" class="grafica">
+
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalReportes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="Formularios" id="Imprimir">
+                <div class="modal-header ">
+                    <div class="panel  panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="modal-title" id="myModalLabel">Reportes del sistema</h3>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="panel  panel-primary">
+                        <div class="panel-heading">
+                            <h2 id="titleReportes" class="panel-title"></h2>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table">
+                                <thead id="thead">
+
+                                </thead>
+                                <tbody id="resultReportes">
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <input id="filtrar" name="filtrar" placeholder="Buscar" onkeyup="filtrarCurso(1, 'nombre');" class="form-control"/>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="panel-body">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div id="paginadorReportes">
+
+                                    </div>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" onclick="PrintThisDiv('Imprimir')" class="btn btn-primary">Imprimir</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalGraficas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="Formularios" id="ImprimirGraficas">
+                <div class="modal-header ">
+                    <div class="panel  panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="modal-title" id="myModalLabel">Graficas del sistema</h3>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="panel  panel-primary">
+                        <div class="panel-heading">
+                            <h2 id="titleGraficas" class="panel-title"></h2>
+                        </div>
+                        <div class="panel-body">
+                            <div id="graficasCursos" class="graficas">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" onclick="PrintThisDiv('ImprimirGraficas')" class="btn btn-primary">Imprimir</button>
+            </div>
+        </div>
+    </div>
+</div>
